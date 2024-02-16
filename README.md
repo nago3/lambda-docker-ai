@@ -1,6 +1,6 @@
 # lambda-docker-ai
 
-This is sample ai innfrastructure on AWS Lambda.
+This is sample ai infrastructure on AWS Lambda.
 
 ## TensorFlow versions
 
