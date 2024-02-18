@@ -6,6 +6,22 @@ This is sample ai infrastructure on AWS Lambda.
 
 Check [here](https://hub.docker.com/r/tensorflow/tensorflow/tags?page=1&name=py3)
 
+## Local test
+
+### Run container
+
+```
+$ docker run --rm -v ~/projects/indi/lambda-docker-ai:/var/task:ro,delegated -p 9000:8080 public.ecr.aws/lambda/python:3.12 lambda_function.lambda_handler
+```
+
+### Run test
+
+```
+$ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
+```
+
+docker run --rm -v ~/projects/indi/lambda-docker-ai:/var/task:ro,delegated -p 9000:8080 public.ecr.aws/lambda/python:3.12 lambda_function.lambda_handler
+
 ## Commands
 
 ### Local test
