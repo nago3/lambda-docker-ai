@@ -1,16 +1,17 @@
-# Python 3.12 Lambdaランタイムのベースイメージを指定
-FROM public.ecr.aws/lambda/python:3.12
+FROM ubuntu:20.04
 
-# 必要なパッケージをインストール
-RUN apt-get update && apt-get install -y wget
-RUN pip install --no-cache-dir tensorflow==2.6.0
+RUN apt-get update && apt-get install -y python3-pip
 
-WORKDIR /var/task
-COPY lambda_function.py .
+RUN mkdir /function && \
+  pip install --target /function awslambdaric
 
-RUN pip install awslambdaric
+COPY lambda_function.py /function/
 
-# Dockerコンテナの起動時に実行されるコマンドを指定
-CMD ["lambda_function.lambda_handler"]
+COPY ./entry_script.sh /entry_script.sh
+ADD ./aws-lambda-rie /usr/bin/aws-lambda-rie
 
+WORKDIR /function
 
+ENTRYPOINT [ "/entry_script.sh" ]
+
+CMD [ "lambda_function.lambda_handler" ]

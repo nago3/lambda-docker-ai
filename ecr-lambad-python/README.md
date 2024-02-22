@@ -4,10 +4,16 @@ Use Lambda container ECR image:python
 
 ## Local test
 
+### Image build
+
+```
+$ docker build -t ecr-lambda:latest .
+```
+
 ### Run container
 
 ```
-$ docker run --rm -v /path/to/dir:/var/task:ro,delegated -p 9000:8080 public.ecr.aws/lambda/python:3.12 lambda_function.lambda_handler
+$ docker run --rm -p 9000:8080 ecr-lambda:latest lambda_function.lambda_handler
 ```
 
 ### Run test
