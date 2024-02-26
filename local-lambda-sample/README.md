@@ -2,6 +2,14 @@
 
 Sample code for run AWS Lambda local env.
 
+## GitHub Actions test
+
+### Command
+
+- `act -l` - view the execution graph
+- `act -g` - view the jobs
+- `act -j build` - run the tests
+
 ## Commands
 
 ### Image build
